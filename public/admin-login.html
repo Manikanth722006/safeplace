@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SafeBox | Admin Portal</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="logo">SAFE<span>BOX</span></a>
+    <div class="nav-links">
+      <a href="student-login.html">Student Login</a>
+      <a href="track.html">Track Complaint</a>
+    </div>
+  </nav>
+
+  <div class="container auth-container">
+    <div class="glass-card">
+      <div class="header-text">
+        <h1>Admin Portal</h1>
+        <p>Login to manage and respond to complaints</p>
+      </div>
+      
+      <div id="errorMsg" class="alert error"></div>
+      <div id="successMsg" class="alert success"></div>
+      
+      <form id="loginForm">
+        <div class="form-group">
+          <label>Admin Username</label>
+          <input type="text" id="username" class="form-control" required placeholder="Enter admin username">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="password" class="form-control" required placeholder="Enter admin password">
+        </div>
+        <button type="submit" class="btn btn-primary">Admin Login</button>
+      </form>
+      
+      <div style="text-align: center; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border);">
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">New administrator?</p>
+        <button id="showRegisterBtn" class="btn btn-outline" style="width: 100%;">Create Admin Account</button>
+      </div>
+
+      <form id="registerForm" style="display: none; margin-top: 2rem;">
+        <h3 style="margin-bottom: 1rem;">Register Admin Account</h3>
+        <div class="form-group">
+          <label>Admin Username</label>
+          <input type="text" id="regUsername" class="form-control" required placeholder="Choose admin username">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="regPassword" class="form-control" required placeholder="Create admin password">
+        </div>
+        <button type="submit" class="btn btn-primary">Create Admin Account</button>
+      </form>
+      
+      <div style="text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border);">
+        <p style="color: var(--text-muted); font-size: 0.9rem;">
+          Default admin credentials:<br>
+          Username: <strong>admin</strong><br>
+          Password: <strong>admin123</strong>
+        </p>
+      </div>
+    </div>
+  </div>
+  <script src="js/admin-auth.js"></script>
+</body>
+</html>

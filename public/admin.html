@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SafeBox | Admin Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="navbar" style="background: rgba(15, 23, 42, 1); border-bottom-color: #334155;">
+    <a href="index.html" class="logo">SAFE<span>BOX</span> <span style="font-size: 0.8rem; font-weight: normal; color: var(--danger); border: 1px solid var(--danger); padding: 2px 8px; border-radius: 4px; margin-left: 10px;">ADMIN</span></a>
+    <div class="nav-links">
+      <span id="welcomeUser" style="color: var(--text-muted); margin-right: 1rem;">Welcome, Admin</span>
+      <a href="#" onclick="logout(); return false;">Log Out</a>
+    </div>
+  </nav>
+
+  <div class="container" style="max-width: 1200px;">
+    <!-- Admin Stats -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+      <h2>Analytics Dashboard</h2>
+      <button onclick="loadAnalytics()" class="btn btn-outline">Refresh Analytics</button>
+    </div>
+    <div class="analytics-grid">
+      <div class="stat-card">
+        <div class="stat-number" id="totalComplaints">0</div>
+        <div class="stat-label">Total Complaints</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="pendingComplaints">0</div>
+        <div class="stat-label">Pending</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="inProgressComplaints">0</div>
+        <div class="stat-label">In Progress</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="resolvedComplaints">0</div>
+        <div class="stat-label">Resolved</div>
+      </div>
+    </div>
+
+    <!-- Main Complaints Table -->
+    <div class="glass-card" style="padding: 1.5rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <h2>All Complaints</h2>
+        <div style="display: flex; gap: 1rem;">
+          <button onclick="loadComplaints()" class="btn btn-outline">Refresh</button>
+          <button onclick="exportData()" class="btn btn-success">Export CSV</button>
+        </div>
+      </div>
+      
+      <div id="errorMsg" class="alert error"></div>
+      <div id="successMsg" class="alert success"></div>
+      <div id="loadingMsg" class="loading" style="display: none;">Loading complaints...</div>
+      
+      <div style="overflow-x: auto;">
+        <table class="data-table" id="complaintsTable">
+          <thead>
+            <tr>
+              <th>Tracking ID</th>
+              <th>Student</th>
+              <th>Category</th>
+              <th>Description</th>
+              <th>Priority</th>
+              <th>Status</th>
+              <th>Date</th>
+              <th>Evidence</th>
+              <th>Rating</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <!-- Populated via JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Update Status Modal -->
+  <div id="updateModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Update Complaint Status</h3>
+        <span class="close" onclick="closeModal()">&times;</span>
+      </div>
+      <div id="modalError" class="alert error"></div>
+      <form id="updateForm">
+        <input type="hidden" id="complaintId">
+        <div class="form-group">
+          <label>Status</label>
+          <select id="statusSelect" class="form-control" required>
+            <option value="Pending">Pending</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Resolved">Resolved</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Remarks</label>
+          <textarea id="remarksText" class="form-control" placeholder="Add any remarks or updates..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/admin.js"></script>
+  <style>
+    .alert.success {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid var(--success);
+      color: #86efac;
+      display: none;
+    }
+    .loading {
+      text-align: center;
+      color: var(--text-muted);
+      padding: 2rem;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(4px);
+    }
+    .modal-content {
+      background: var(--bg-card);
+      margin: 10% auto;
+      padding: 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      width: 90%;
+      max-width: 500px;
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .modal-header h3 {
+      margin: 0;
+      color: #fff;
+    }
+    .close {
+      color: var(--text-muted);
+      font-size: 1.5rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .close:hover {
+      color: #fff;
+    }
+    .modal-content .form-group {
+      padding: 0 1.5rem;
+    }
+    .modal-content .btn {
+      margin: 1.5rem;
+    }
+  </style>
+</body>
+</html>

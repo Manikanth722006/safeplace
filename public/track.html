@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SafeBox | Track Complaint</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="logo">SAFE<span>BOX</span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="track.html">Track Complaint</a>
+      <a href="login.html" id="loginBtn">Admin Login</a>
+      <a href="#" onclick="logout(); return false;" id="logoutBtn" style="display: none;">Logout</a>
+    </div>
+  </nav>
+
+  <div class="container auth-container">
+    <div class="glass-card">
+      <div class="header-text">
+        <h1>Track Status</h1>
+        <p>Enter your tracking ID below</p>
+      </div>
+
+      <div id="errorMsg" class="alert error"></div>
+
+      <form id="trackForm">
+        <div class="form-group">
+          <label>Complaint ID</label>
+          <input type="text" id="trackId" class="form-control" required placeholder="SB-XXXXXXXX">
+        </div>
+        <button type="submit" class="btn btn-primary">Check Status</button>
+      </form>
+
+      <div id="statusResult" class="result-card" style="border-color: var(--primary);">
+        <h3 style="margin-bottom: 1rem;">Complaint Details</h3>
+        <p style="color: var(--text-muted); margin-bottom: 0.5rem;">Category: <span id="resCategory" style="color: #fff;">-</span></p>
+        <p style="color: var(--text-muted); margin-bottom: 0.5rem;">Date: <span id="resDate" style="color: #fff;">-</span></p>
+        <p style="color: var(--text-muted); margin-bottom: 0.5rem;">Current Status: <span id="resStatus" class="status-badge status-pending">Pending</span></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/auth.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    if(getToken()) { document.getElementById('loginNav').style.display = 'none'; }
+  </script>
+</body>
+</html>

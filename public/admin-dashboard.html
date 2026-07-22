@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SafeBox | Admin Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="admin-dashboard.html" class="logo">SAFE<span>BOX</span></a>
+    <div class="nav-links">
+      <span id="welcomeUser" style="color: var(--text-muted);">Welcome, Admin</span>
+      <a href="#" onclick="logout(); return false;">Logout</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <!-- Analytics Section -->
+    <div class="analytics-grid">
+      <div class="stat-card">
+        <div class="stat-number" id="totalComplaints">0</div>
+        <div class="stat-label">Total Complaints</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="pendingComplaints">0</div>
+        <div class="stat-label">Pending</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="inProgressComplaints">0</div>
+        <div class="stat-label">In Progress</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="resolvedComplaints">0</div>
+        <div class="stat-label">Resolved</div>
+      </div>
+    </div>
+
+    <!-- Filters and Search -->
+    <div class="glass-card">
+      <div class="filters-section">
+        <div class="filter-group">
+          <label>Status</label>
+          <select id="statusFilter" class="form-control">
+            <option value="">All Status</option>
+            <option value="Pending">Pending</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Resolved">Resolved</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Category</label>
+          <select id="categoryFilter" class="form-control">
+            <option value="">All Categories</option>
+            <option value="Ragging">Ragging</option>
+            <option value="Harassment">Harassment</option>
+            <option value="Maintenance">Maintenance & Infrastructure</option>
+            <option value="Academic">Academic Issues</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Priority</label>
+          <select id="priorityFilter" class="form-control">
+            <option value="">All Priority</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Search</label>
+          <input type="text" id="searchInput" class="form-control" placeholder="Search descriptions...">
+        </div>
+        <div class="filter-actions">
+          <button class="btn btn-primary" onclick="applyFilters()">Apply Filters</button>
+          <button class="btn btn-outline" onclick="resetFilters()">Reset</button>
+          <button class="btn btn-success" onclick="exportCSV()">Export CSV</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Complaints Table -->
+    <div class="glass-card">
+      <div class="header-text">
+        <h2>All Complaints</h2>
+        <p>Manage and respond to student complaints</p>
+      </div>
+
+      <div id="tableError" class="alert error"></div>
+      <div id="tableLoading" class="loading">Loading complaints...</div>
+
+      <div class="table-container">
+        <table id="complaintsTable">
+          <thead>
+            <tr>
+              <th>Tracking ID</th>
+              <th>Student</th>
+              <th>Category</th>
+              <th>Description</th>
+              <th>Priority</th>
+              <th>Status</th>
+              <th>Created</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="complaintsTableBody">
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination" id="pagination"></div>
+    </div>
+  </div>
+
+  <!-- Update Modal -->
+  <div id="updateModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Update Complaint</h3>
+        <span class="close" onclick="closeUpdateModal()">&times;</span>
+      </div>
+      <div id="updateError" class="alert error"></div>
+      <form id="updateForm">
+        <input type="hidden" id="updateId">
+        <div class="form-group">
+          <label>Status</label>
+          <select id="updateStatus" class="form-control" required>
+            <option value="Pending">Pending</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Resolved">Resolved</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Remarks</label>
+          <textarea id="updateRemarks" class="form-control" placeholder="Add any remarks or updates..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Complaint</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- View Details Modal -->
+  <div id="viewModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Complaint Details</h3>
+        <span class="close" onclick="closeViewModal()">&times;</span>
+      </div>
+      <div id="viewContent"></div>
+    </div>
+  </div>
+
+  <script src="js/auth.js"></script>
+  <script src="js/admin-dashboard.js"></script>
+</body>
+</html>

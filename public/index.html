@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SafeBox | Secure Complaint Management</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="logo">SAFE<span>BOX</span></a>
+    <div class="nav-links">
+      <a href="track.html">Track Complaint</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="glass-card">
+      <div class="header-text">
+        <h1>SafeBox Complaint System</h1>
+        <p>Secure and anonymous complaint management for students and administrators</p>
+      </div>
+
+      <div class="dashboard-grid" style="margin-top: 3rem;">
+        <div class="glass-card" style="text-align: center;">
+          <h3 style="color: var(--primary); margin-bottom: 1rem;">Student Portal</h3>
+          <p style="color: var(--text-muted); margin-bottom: 2rem;">Submit and track your complaints securely</p>
+          <a href="student-login.html" class="btn btn-primary" style="width: auto; padding: 1rem 2rem;">Student Login</a>
+        </div>
+
+        <div class="glass-card" style="text-align: center;">
+          <h3 style="color: var(--danger); margin-bottom: 1rem;">Admin Portal</h3>
+          <p style="color: var(--text-muted); margin-bottom: 2rem;">Manage and respond to complaints</p>
+          <a href="admin-login.html" class="btn btn-danger" style="width: auto; padding: 1rem 2rem; background: var(--danger);">Admin Login</a>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border);">
+        <h4 style="color: var(--text-muted); margin-bottom: 1rem;">Quick Access</h4>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="track.html" class="btn btn-outline" style="width: auto;">Track Complaint</a>
+          <a href="admin.html" class="btn btn-outline" style="width: auto;">Admin Dashboard (Direct)</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .btn-danger {
+      background: var(--danger);
+      color: white;
+    }
+    .btn-danger:hover {
+      background: #dc2626;
+    }
+  </style>
+</body>
+</html>

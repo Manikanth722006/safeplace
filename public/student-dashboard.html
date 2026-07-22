@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SafeBox | Student Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="student-dashboard.html" class="logo">SAFE<span>BOX</span></a>
+    <div class="nav-links">
+      <span id="welcomeUser" style="color: var(--text-muted);">Welcome, Student</span>
+      <a href="#" onclick="logout(); return false;">Logout</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="dashboard-grid">
+      <!-- Submit Complaint Section -->
+      <div class="glass-card">
+        <div class="header-text">
+          <h2>Submit New Complaint</h2>
+          <p>Report an issue securely and anonymously</p>
+        </div>
+
+        <div id="submitError" class="alert error"></div>
+        <div id="submitSuccess" class="alert success"></div>
+
+        <form id="complaintForm" enctype="multipart/form-data">
+          <div class="form-group">
+            <label>Category</label>
+            <select id="category" name="category" class="form-control" required>
+              <option value="" disabled selected>Select an issue...</option>
+              <option value="Ragging">Ragging</option>
+              <option value="Harassment">Harassment</option>
+              <option value="Maintenance">Maintenance & Infrastructure</option>
+              <option value="Academic">Academic Issues</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          
+          <div class="form-group">
+            <label>Description</label>
+            <textarea id="description" name="description" class="form-control" placeholder="Please describe the incident or issue in detail..." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Upload Evidence (Optional - Max 5 files)</label>
+            <div class="file-upload-wrapper">
+              <div class="file-upload-btn" id="fileDisplay">
+                Click or drag files here (Max 5)
+              </div>
+              <input type="file" id="evidence" name="evidence" multiple accept="image/*,.pdf,.doc,.docx">
+            </div>
+            <div id="fileList" class="file-list"></div>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Submit Complaint</button>
+        </form>
+      </div>
+
+      <!-- My Complaints Section -->
+      <div class="glass-card">
+        <div class="header-text">
+          <h2>My Complaints</h2>
+          <p>Track and manage your submitted complaints</p>
+        </div>
+
+        <div id="complaintsError" class="alert error"></div>
+        <div id="complaintsLoading" class="loading">Loading complaints...</div>
+
+        <div id="complaintsList" class="complaints-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Modal -->
+  <div id="editModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Edit Complaint</h3>
+        <span class="close" onclick="closeEditModal()">&times;</span>
+      </div>
+      <div id="editError" class="alert error"></div>
+      <form id="editForm">
+        <input type="hidden" id="editId">
+        <div class="form-group">
+          <label>Category</label>
+          <select id="editCategory" class="form-control" required>
+            <option value="Ragging">Ragging</option>
+            <option value="Harassment">Harassment</option>
+            <option value="Maintenance">Maintenance & Infrastructure</option>
+            <option value="Academic">Academic Issues</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Priority</label>
+          <select id="editPriority" class="form-control" required>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea id="editDescription" class="form-control" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Complaint</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Rating Modal -->
+  <div id="ratingModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Rate the Resolution</h3>
+        <span class="close" onclick="closeRatingModal()">&times;</span>
+      </div>
+      <div id="ratingError" class="alert error"></div>
+      <form id="ratingForm">
+        <input type="hidden" id="ratingId">
+        <div class="form-group">
+          <label>How satisfied are you with the resolution?</label>
+          <div class="star-rating" id="starRating">
+            <span class="star" data-rating="1">⭐</span>
+            <span class="star" data-rating="2">⭐</span>
+            <span class="star" data-rating="3">⭐</span>
+            <span class="star" data-rating="4">⭐</span>
+            <span class="star" data-rating="5">⭐</span>
+          </div>
+          <input type="hidden" id="ratingValue" value="0" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Rating</button>
+      </form>
+    </div>
+  </div>
+
+  <style>
+    .star-rating {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    .star {
+      font-size: 2rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      opacity: 0.3;
+    }
+    .star:hover,
+    .star.active {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+    .star:hover {
+      transform: scale(1.3);
+    }
+  </style>
+
+  <script src="js/auth.js"></script>
+  <script src="js/student-dashboard.js"></script>
+</body>
+</html>
