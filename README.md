@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # SafeBox Complaint Management System
 
 A secure, scalable complaint management system built with Node.js, Express, SQLite, and modern web technologies.
@@ -131,3 +132,6 @@ For production deployment:
 4. Configure proper logging
 5. Use a process manager like PM2
 6. Consider using a more robust database for high traffic
+=======
+# safeplace
+>>>>>>> 77796b04405860883b33dc30cfd7290d16d7a747
